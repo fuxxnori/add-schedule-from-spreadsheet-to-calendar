@@ -2,6 +2,10 @@ function myFunction() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sh = ss.getSheets()[0]
   const calendarId = sh.getRange('A2').getValue()
+  if(!calendarId){
+    Browser.msgBox("カレンダーIDが入力されていません。")
+    return;
+  }
   const calendar = CalendarApp.getOwnedCalendarById(calendarId);
   const events = getInputEvents(sh);
   events.forEach(function(event){
